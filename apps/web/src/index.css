@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Deep Space Dark Theme */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #121212; /* Card bg */
+  
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  
+  /* Vibrant Accents */
+  --accent-green: #10b981;
+  --accent-green-glow: rgba(16, 185, 129, 0.3);
+  
+  --accent-yellow: #f59e0b;
+  --accent-yellow-glow: rgba(245, 158, 11, 0.3);
+  
+  --accent-red: #ef4444;
+  --accent-red-glow: rgba(239, 68, 68, 0.3);
+  
+  --accent-blue: #3b82f6; 
+  --accent-blue-glow: rgba(59, 130, 246, 0.3);
+
+  --accent-purple: #8b5cf6;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  /* Subtle mesh gradient background */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+@layer components {
+  /* Glassmorphism Utilities */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .glass-card {
+    @apply glass-panel rounded-xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    background: rgba(30, 30, 30, 0.7);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--glass-highlight) inset;
+    transform: translateY(-1px);
+  }
+
+  /* Typography */
+  .text-label {
+    @apply text-xs font-semibold tracking-wider text-text-secondary uppercase;
+  }
+  
+  .text-value {
+    @apply text-2xl font-bold text-white tracking-tight;
+  }
+
+  /* Custom Grid for Account List */
+  .account-grid-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 100px 140px 140px 100px; /* Added 120px for Burn Rate */
+    padding: 0 24px;
+    margin-bottom: 12px;
+  }
+
+  .account-grid-row {
+    display: grid;
+    grid-template-columns: 1fr 120px 100px 140px 140px 100px;
+    align-items: center;
+    padding: 16px 24px;
+    /* No border-bottom, using independent cards */
+  }
+
+  /* Status Indicators */
+  .status-pill {
+    @apply px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase border;
+  }
+  
+  .status-pill.ok {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--accent-green);
+    border-color: rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 10px var(--accent-green-glow);
+  }
+  
+  .status-pill.warn {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--accent-yellow);
+    border-color: rgba(245, 158, 11, 0.2);
+  }
+  
+  .status-pill.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  /* Progress Bars */
+  .progress-track {
+    @apply h-1.5 w-full bg-white/5 rounded-full overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+  }
+  
+  .progress-fill.green {
+    background: linear-gradient(90deg, var(--accent-green), #34d399);
+    box-shadow: 0 0 8px var(--accent-green-glow);
+  }
+  
+  .progress-fill.yellow {
+    background: linear-gradient(90deg, var(--accent-yellow), #fbbf24);
+  }
+  
+  .progress-fill.red {
+    background: linear-gradient(90deg, var(--accent-red), #f87171);
+  }
+
+  /* Buttons */
+  .btn-icon {
+    @apply p-2 rounded-lg text-text-secondary hover:text-white transition-colors bg-white/5 hover:bg-white/10 border border-white/5;
+  }
+}

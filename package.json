@@ -1,0 +1,15 @@
+{
+  "name": "antigravity-dashboard-root",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "start": "npm run start --workspace=@antigravity/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
